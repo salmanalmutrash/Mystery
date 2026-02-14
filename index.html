@@ -16,14 +16,24 @@
 
 *{box-sizing:border-box;}
 
+/* Better viewport handling on iOS */
 html{height:-webkit-fill-available;}
 
 body{
   margin:0;
+
+  /* Keep FULL viewport height to avoid gradient "line breaks" */
+  min-height:100dvh;
   min-height:100svh;
   min-height:-webkit-fill-available;
+
   display:grid;
   place-items:center;
+
+  /* account for iPhone safe areas */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+
   font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   color:var(--text);
   background:radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1) 45%, #ffc0d9 100%);
@@ -57,6 +67,9 @@ body{
   display:grid;
   gap:14px;
   grid-template-rows:auto auto auto 72px auto auto;
+
+  /* THIS is the “make it 50” without breaking the background */
+  transform: translateY(-50px);
 }
 
 h1{
@@ -170,9 +183,7 @@ let locked = false;
 
 const NO_DISAPPEAR_AT = 5;
 
-function clamp(v,min,max){
-  return Math.max(min,Math.min(max,v));
-}
+function clamp(v,min,max){ return Math.max(min,Math.min(max,v)); }
 
 function updateSizes(){
   const yesScale = clamp(1 + noClicks*0.12, 1, 1.85);
@@ -185,8 +196,8 @@ function updateSizes(){
     "همم 😄",
     " متأكدة؟ 🙈",
     "زر نعم شكله أحلى 💗",
-    "الكون يقول لك نعم 💘",
     "آخر فرصة 😌",
+    "بقى خيار واحد فقط 💖"
   ];
 
   result.textContent = msgs[Math.min(noClicks-1, msgs.length-1)];
@@ -215,10 +226,8 @@ function disappearNo(){
   },220);
 }
 
-/* hover desktop */
 no.addEventListener("mouseenter", moveNo);
 
-/* click no */
 no.addEventListener("click", e=>{
   e.preventDefault();
   if(locked) return;
@@ -229,32 +238,4 @@ no.addEventListener("click", e=>{
   }
 });
 
-/* click yes */
-yes.addEventListener("click", ()=>{
-  if(locked) return;
-  locked=true;
-  result.textContent="يسسسس! 💞 أنا أسعد شخص في الكون 😌💗";
-  confetti();
-});
-
-function confetti(){
-  for(let i=0;i<80;i++){
-    const s=document.createElement("span");
-    s.textContent=["💗","💕","💖","💘","💝","✨"][Math.floor(Math.random()*6)];
-    s.style.position="fixed";
-    s.style.left=Math.random()*100+"vw";
-    s.style.top="-10vh";
-    s.style.fontSize=(12+Math.random()*18)+"px";
-    s.style.transition="transform 1.6s ease, opacity 1.6s ease";
-    document.body.appendChild(s);
-    requestAnimationFrame(()=>{
-      s.style.transform=`translateY(${110+Math.random()*30}vh) rotate(${Math.random()*360}deg)`;
-      s.style.opacity="0";
-    });
-    setTimeout(()=>s.remove(),1700);
-  }
-}
-</script>
-
-</body>
-</html>
+yes.addE

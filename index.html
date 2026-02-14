@@ -1,264 +1,259 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>💗 Naba, will you be my Valentine?</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>💗 نبأ، هل تكونين حبيبتي في عيد الحب؟</title>
 
-  <style>
-    :root{
-      --pink:#ff5fa2;
-      --bg1:#ffd1e6;
-      --bg2:#ffe8f2;
-      --card:#ffffffcc;
-      --text:#2b2b2b;
-    }
+<style>
+:root{
+  --pink:#ff5fa2;
+  --bg1:#ffd1e6;
+  --bg2:#ffe8f2;
+  --card:#ffffffcc;
+  --text:#2b2b2b;
+}
 
-    *{ box-sizing:border-box; }
+*{box-sizing:border-box;}
 
-    body{
-      margin:0;
-      min-height:60vh;
-      display:grid;
-      place-items:center;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1) 45%, #ffc0d9 100%);
-      overflow:hidden;
-    }
+html{height:-webkit-fill-available;}
 
-    /* Floating hearts */
-    .hearts::before,.hearts::after{
-      content:"💗 💕 💖 💘 💝 💞";
-      position:fixed;
-      left:0; right:0;
-      text-align:center;
-      top:105%;
-      opacity:.25;
-      font-size:clamp(18px,3vw,28px);
-      animation:float 8s linear infinite;
-      pointer-events:none;
-    }
-    .hearts::after{ opacity:.18; animation-duration:11s; }
-    @keyframes float{ to{ transform:translateY(-130vh);} }
+body{
+  margin:0;
+  min-height:100svh;
+  min-height:-webkit-fill-available;
+  display:grid;
+  place-items:center;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1) 45%, #ffc0d9 100%);
+  overflow:hidden;
+}
 
-    .card{
-      width:min(92vw,520px);
-      background:var(--card);
-      backdrop-filter:blur(10px);
-      border-radius:24px;
-      padding:26px 22px;
-      box-shadow:0 18px 50px #00000018;
-      text-align:center;
+/* hearts */
+.hearts::before,.hearts::after{
+  content:"💗 💕 💖 💘 💝 💞";
+  position:fixed;
+  left:0; right:0;
+  text-align:center;
+  top:105%;
+  opacity:.25;
+  font-size:clamp(18px,3vw,28px);
+  animation:float 8s linear infinite;
+  pointer-events:none;
+}
+.hearts::after{opacity:.18;animation-duration:11s;}
+@keyframes float{to{transform:translateY(-130vh);}}
 
-      display:grid;
-      gap:14px;
-      grid-template-rows:auto auto auto 72px auto auto;
-    }
+/* card */
+.card{
+  width:min(92vw,520px);
+  background:var(--card);
+  backdrop-filter:blur(10px);
+  border-radius:24px;
+  padding:26px 22px;
+  box-shadow:0 18px 50px #00000018;
+  text-align:center;
+  display:grid;
+  gap:14px;
+  grid-template-rows:auto auto auto 72px auto auto;
+}
 
-    h1{
-      margin:0;
-      font-size:clamp(26px,4.5vw,38px);
-      line-height:1.1;
-    }
+h1{
+  margin:0;
+  font-size:clamp(26px,4.5vw,38px);
+  line-height:1.1;
+}
 
-    p{
-      margin:0;
-      font-size:clamp(15px,2.8vw,18px);
-      opacity:.9;
-    }
+p{
+  margin:0;
+  font-size:clamp(15px,2.8vw,18px);
+  opacity:.9;
+}
 
-    .note{
-      justify-self:center;
-      padding:10px 14px;
-      border-radius:16px;
-      background:#fff;
-      border:1px solid #ffd1e6;
-      font-size:14px;
-    }
+.note{
+  justify-self:center;
+  padding:10px 14px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid #ffd1e6;
+  font-size:14px;
+}
 
-    .resultWrap{
-      display:grid;
-      place-items:center;
-      min-height:72px;
-    }
+.resultWrap{
+  display:grid;
+  place-items:center;
+  min-height:72px;
+}
 
-    #result{
-      font-weight:800;
-      font-size:18px;
-      color:#b0004e;
-      max-width:34ch;
-      line-height:1.25;
-    }
+#result{
+  font-weight:800;
+  font-size:18px;
+  color:#b0004e;
+  max-width:34ch;
+  line-height:1.25;
+}
 
-    .btns{
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      flex-wrap:wrap;
-      position:relative;
-    }
+.btns{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  position:relative;
+  min-height:52px;
+}
 
-    button{
-      border:0;
-      border-radius:999px;
-      padding:12px 18px;
-      font-size:16px;
-      font-weight:800;
-      cursor:pointer;
-      transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
-      touch-action:manipulation;
-      -webkit-tap-highlight-color:transparent;
-    }
+button{
+  border:0;
+  border-radius:999px;
+  padding:12px 18px;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease, filter .2s ease, opacity .2s ease;
+  touch-action:manipulation;
+}
 
-    button:active{ transform:scale(.97); }
+button:active{transform:scale(.97);}
 
-    #yes{
-      background:var(--pink);
-      color:#fff;
-      box-shadow:0 10px 20px #ff5fa24a;
-    }
+#yes{
+  background:var(--pink);
+  color:#fff;
+  box-shadow:0 10px 20px #ff5fa24a;
+}
 
-    #no{
-      background:#fff;
-      color:#7a2b4a;
-      border:2px solid #ff9cc6;
-      position:relative;
-    }
+#no{
+  background:#fff;
+  color:#7a2b4a;
+  border:2px solid #ff9cc6;
+  position:relative;
+}
 
-    .footer{
-      font-size:12px;
-      opacity:.6;
-      margin-top:4px;
-    }
-  </style>
+.footer{
+  font-size:12px;
+  opacity:.6;
+  margin-top:4px;
+}
+</style>
 </head>
 
 <body>
-  <div class="hearts"></div>
+<div class="hearts"></div>
 
-  <div class="card">
-    <div class="note">A tiny question from me to you 💌</div>
+<div class="card">
+  <div class="note">سؤال صغير من قلبي لقلبك 💌</div>
 
-    <h1>Naba, will you be my Valentine?</h1>
+  <h1>نبأ، هل تكونين حبيبتي في عيد الحب؟</h1>
 
-    <p>I dare you to choose No!</p>
+  <p>أتحداك تضغطي لا!</p>
 
-    <div class="resultWrap">
-      <div id="result"></div>
-    </div>
-
-    <div class="btns" id="btns">
-      <button id="yes">Yes 💖</button>
-      <button id="no">No 🙈</button>
-    </div>
-
-    <div class="footer">Made by Salman Almutrash</div>
+  <div class="resultWrap">
+    <div id="result"></div>
   </div>
 
+  <div class="btns" id="btns">
+    <button id="yes">نعم 💖</button>
+    <button id="no">لا 🙈</button>
+  </div>
+
+  <div class="footer">صُنع بمخ سلمان المطرش</div>
+</div>
+
 <script>
-  const yes = document.getElementById("yes");
-  const no = document.getElementById("no");
-  const result = document.getElementById("result");
-  const btns = document.getElementById("btns");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const result = document.getElementById("result");
+const btns = document.getElementById("btns");
 
-  let noClicks = 0;
-  let locked = false;
+let noClicks = 0;
+let locked = false;
 
-  function clamp(v,min,max){
-    return Math.max(min,Math.min(max,v));
+const NO_DISAPPEAR_AT = 5;
+
+function clamp(v,min,max){
+  return Math.max(min,Math.min(max,v));
+}
+
+function updateSizes(){
+  const yesScale = clamp(1 + noClicks*0.12, 1, 1.85);
+  const noScale  = clamp(1 - noClicks*0.10, 0.25, 1);
+
+  yes.style.transform = `scale(${yesScale})`;
+  no.style.transform  = `scale(${noScale})`;
+
+  const msgs = [
+    "همم 😄",
+    " متأكدة؟ 🙈",
+    "زر نعم شكله أحلى 💗",
+    "الكون يقول لك نعم 💘",
+    "آخر فرصة 😌",
+  ];
+
+  result.textContent = msgs[Math.min(noClicks-1, msgs.length-1)];
+}
+
+function moveNo(){
+  if(locked || no.style.display==="none") return;
+
+  const area = btns.getBoundingClientRect();
+  const btn = no.getBoundingClientRect();
+
+  const maxX = area.width - btn.width;
+  const maxY = area.height - btn.height;
+
+  no.style.position="absolute";
+  no.style.left=Math.random()*maxX+"px";
+  no.style.top=Math.random()*maxY+"px";
+}
+
+function disappearNo(){
+  no.style.opacity="0";
+  no.style.transform="scale(0.05)";
+  setTimeout(()=>{
+    no.style.display="none";
+    result.textContent="بقى خيار واحد فقط 💖";
+  },220);
+}
+
+/* hover desktop */
+no.addEventListener("mouseenter", moveNo);
+
+/* click no */
+no.addEventListener("click", e=>{
+  e.preventDefault();
+  if(locked) return;
+  noClicks++;
+  updateSizes();
+  if(noClicks>=NO_DISAPPEAR_AT){
+    disappearNo();
   }
+});
 
-  /* ===== Size growth logic (Option C) ===== */
-  function updateSizes(){
-    const yesScale = clamp(1 + noClicks*0.12, 1, 1.8);
-    const noScale  = clamp(1 - noClicks*0.08, 0.55, 1);
+/* click yes */
+yes.addEventListener("click", ()=>{
+  if(locked) return;
+  locked=true;
+  result.textContent="يسسسس! 💞 أنا أسعد شخص في الكون 😌💗";
+  confetti();
+});
 
-    yes.style.transform = `scale(${yesScale})`;
-    no.style.transform  = `scale(${noScale})`;
-
-    yes.style.filter = `brightness(${1 + (yesScale-1)*0.15})`;
-    no.style.filter  = `brightness(${1 - (1-noScale)*0.25})`;
-
-    const msgs = [
-      "Hmm 😄",
-      "Are you sure? 🙈",
-      "You're making Yes look really good 💗",
-      "I think the universe wants Yes 💘",
-      "Last chance 😌",
-      "Just tap Yes already 💞"
-    ];
-
-    result.textContent = msgs[Math.min(noClicks-1, msgs.length-1)];
+function confetti(){
+  for(let i=0;i<80;i++){
+    const s=document.createElement("span");
+    s.textContent=["💗","💕","💖","💘","💝","✨"][Math.floor(Math.random()*6)];
+    s.style.position="fixed";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top="-10vh";
+    s.style.fontSize=(12+Math.random()*18)+"px";
+    s.style.transition="transform 1.6s ease, opacity 1.6s ease";
+    document.body.appendChild(s);
+    requestAnimationFrame(()=>{
+      s.style.transform=`translateY(${110+Math.random()*30}vh) rotate(${Math.random()*360}deg)`;
+      s.style.opacity="0";
+    });
+    setTimeout(()=>s.remove(),1700);
   }
-
-  /* ===== Moving No button (desktop hover) ===== */
-  no.addEventListener("mouseenter", ()=>{
-    if(locked) return;
-
-    const area = btns.getBoundingClientRect();
-    const btn  = no.getBoundingClientRect();
-
-    const maxX = area.width - btn.width;
-    const maxY = area.height - btn.height;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    no.style.position="absolute";
-    no.style.left = x+"px";
-    no.style.top  = y+"px";
-  });
-
-  /* ===== Clicking No ===== */
-  no.addEventListener("click", e=>{
-    e.preventDefault();
-    if(locked) return;
-
-    noClicks++;
-
-    if(noClicks>=7){
-      yes.click();
-      return;
-    }
-
-    updateSizes();
-    if(navigator.vibrate) navigator.vibrate(20);
-  });
-
-  /* ===== Clicking Yes ===== */
-  yes.addEventListener("click", ()=>{
-    if(locked) return;
-    locked=true;
-
-    result.textContent="YAY!! 💞 I’m the luckiest. See you soon 😌💗";
-    confetti();
-
-    no.disabled=true;
-    no.style.opacity=".7";
-  });
-
-  /* ===== Confetti ===== */
-  function confetti(){
-    for(let i=0;i<80;i++){
-      const s=document.createElement("span");
-      s.textContent=["💗","💕","💖","💘","💝","✨"][Math.floor(Math.random()*6)];
-      s.style.position="fixed";
-      s.style.left=Math.random()*100+"vw";
-      s.style.top="-10vh";
-      s.style.fontSize=(12+Math.random()*18)+"px";
-      s.style.transition="transform 1.6s ease, opacity 1.6s ease";
-      s.style.pointerEvents="none";
-      document.body.appendChild(s);
-
-      requestAnimationFrame(()=>{
-        s.style.transform=`translateY(${110+Math.random()*30}vh) rotate(${Math.random()*360}deg)`;
-        s.style.opacity="0";
-      });
-
-      setTimeout(()=>s.remove(),1700);
-    }
-  }
+}
 </script>
 
 </body>

@@ -3,54 +3,72 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>💗 Will you be my Valentine?</title>
+  <title>💗 Naba, will you be my Valentine?</title>
+
   <style>
-    :root { --pink:#ff5fa2; --bg1:#ffd1e6; --bg2:#ffe8f2; --card:#ffffffcc; --text:#2b2b2b; }
-    * { box-sizing: border-box; }
+    :root{
+      --pink:#ff5fa2;
+      --bg1:#ffd1e6;
+      --bg2:#ffe8f2;
+      --card:#ffffffcc;
+      --text:#2b2b2b;
+    }
+
+    *{ box-sizing:border-box; }
+
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
       min-height:100vh;
       display:grid;
       place-items:center;
-      background: radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1) 45%, #ffc0d9 100%);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1) 45%, #ffc0d9 100%);
       overflow:hidden;
     }
-    .hearts::before, .hearts::after{
+
+    .hearts::before,.hearts::after{
       content:"💗 💕 💖 💘 💝 💞";
       position:fixed;
       left:0; right:0;
       text-align:center;
-      opacity:.25;
-      font-size:clamp(18px, 3vw, 28px);
-      animation:float 8s linear infinite;
       top:105%;
+      opacity:.25;
+      font-size:clamp(18px,3vw,28px);
+      animation:float 8s linear infinite;
       pointer-events:none;
     }
-    .hearts::after{ animation-duration:11s; opacity:.18; }
-    @keyframes float { to { transform: translateY(-130vh); } }
+    .hearts::after{ opacity:.18; animation-duration:11s; }
+    @keyframes float{ to{ transform:translateY(-130vh);} }
 
     .card{
-      width:min(92vw, 520px);
+      width:min(92vw,520px);
       background:var(--card);
-      border:1px solid #ffffff80;
-      backdrop-filter: blur(10px);
+      backdrop-filter:blur(10px);
       border-radius:24px;
-      padding:26px 20px;
+      padding:26px 22px;
       box-shadow:0 18px 50px #00000018;
       text-align:center;
 
       display:grid;
       gap:14px;
       grid-template-rows:auto auto auto 72px auto auto;
-      align-content:center;
     }
-    h1{ margin:0; font-size:clamp(26px, 4.5vw, 38px); line-height:1.1; }
-    p{ margin:0; font-size:clamp(15px, 2.8vw, 18px); opacity:.9; }
+
+    h1{
+      margin:0;
+      font-size:clamp(26px,4.5vw,38px);
+      line-height:1.1;
+    }
+
+    p{
+      margin:0;
+      font-size:clamp(15px,2.8vw,18px);
+      opacity:.9;
+    }
+
     .note{
       justify-self:center;
-      display:inline-block;
       padding:10px 14px;
       border-radius:16px;
       background:#fff;
@@ -62,14 +80,14 @@
       display:grid;
       place-items:center;
       min-height:72px;
-      padding:6px 10px;
     }
+
     #result{
       font-weight:800;
       font-size:18px;
       color:#b0004e;
-      line-height:1.25;
       max-width:34ch;
+      line-height:1.25;
     }
 
     .btns{
@@ -77,8 +95,8 @@
       gap:12px;
       justify-content:center;
       flex-wrap:wrap;
-      margin-top:2px;
     }
+
     button{
       border:0;
       border-radius:999px;
@@ -86,38 +104,41 @@
       font-size:16px;
       font-weight:800;
       cursor:pointer;
-      transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-      transform-origin:center;
-      user-select:none;
+      transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
     }
-    button:active{ transform: scale(.98); }
+
+    button:active{ transform:scale(.97); }
 
     #yes{
       background:var(--pink);
       color:#fff;
       box-shadow:0 10px 20px #ff5fa24a;
     }
+
     #no{
       background:#fff;
       color:#7a2b4a;
       border:2px solid #ff9cc6;
     }
 
-    .small{ margin:0; font-size:12px; opacity:.7; }
-
-    @media (prefers-reduced-motion: reduce){
-      *{ animation:none !important; transition:none !important; }
+    .footer{
+      font-size:12px;
+      opacity:.6;
+      margin-top:4px;
     }
   </style>
 </head>
+
 <body>
   <div class="hearts"></div>
 
-  <div class="card" id="card">
+  <div class="card">
     <div class="note">A tiny question from me to you 💌</div>
-    <h1>Will you be my Valentine?</h1>
+
+    <h1>Naba, will you be my Valentine?</h1>
+
     <p>You make my days lighter, my heart calmer, and my life sweeter.</p>
 
     <div class="resultWrap">
@@ -129,100 +150,88 @@
       <button id="no">No 🙈</button>
     </div>
 
-    <p class="small">Try tapping “No” 😄</p>
+    <div class="footer">Made by Salman Almutrash</div>
   </div>
 
-  <script>
-    const yes = document.getElementById('yes');
-    const no = document.getElementById('no');
-    const result = document.getElementById('result');
+<script>
+  const yes = document.getElementById("yes");
+  const no = document.getElementById("no");
+  const result = document.getElementById("result");
 
-    let noClicks = 0;
-    let locked = false;
+  let noClicks = 0;
+  let locked = false;
 
-    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  function clamp(v,min,max){
+    return Math.max(min,Math.min(max,v));
+  }
 
-    function setYesScale(scale){
-      yes.style.transform = `scale(${scale})`;
-      yes.style.filter = `brightness(${clamp(1 + (scale-1)*0.15, 1, 1.25)})`;
+  function updateSizes(){
+    const yesScale = clamp(1 + noClicks*0.12, 1, 1.8);
+    const noScale  = clamp(1 - noClicks*0.08, 0.55, 1);
+
+    yes.style.transform = `scale(${yesScale})`;
+    no.style.transform  = `scale(${noScale})`;
+
+    yes.style.filter = `brightness(${1 + (yesScale-1)*0.15})`;
+    no.style.filter  = `brightness(${1 - (1-noScale)*0.25})`;
+
+    const msgs = [
+      "Hmm 😄",
+      "Are you sure? 🙈",
+      "You're making Yes look really good 💗",
+      "I think the universe wants Yes 💘",
+      "Last chance 😌",
+      "Just tap Yes already 💞"
+    ];
+
+    result.textContent = msgs[Math.min(noClicks-1, msgs.length-1)];
+  }
+
+  no.addEventListener("click", e=>{
+    e.preventDefault();
+    if(locked) return;
+    noClicks++;
+
+    if(noClicks>=7){
+      yes.click();
+      return;
     }
 
-    function setNoScale(scale){
-      no.style.transform = `scale(${scale})`;
-      no.style.filter = `brightness(${clamp(1 - (1-scale)*0.25, 0.85, 1)})`;
+    updateSizes();
+    if(navigator.vibrate) navigator.vibrate(20);
+  });
+
+  yes.addEventListener("click", ()=>{
+    if(locked) return;
+    locked=true;
+    result.textContent="YAY!! 💞 I’m the luckiest. See you soon 😌💗";
+    confetti();
+
+    no.disabled=true;
+    no.style.opacity=".7";
+  });
+
+  function confetti(){
+    for(let i=0;i<80;i++){
+      const s=document.createElement("span");
+      s.textContent=["💗","💕","💖","💘","💝","✨"][Math.floor(Math.random()*6)];
+      s.style.position="fixed";
+      s.style.left=Math.random()*100+"vw";
+      s.style.top="-10vh";
+      s.style.fontSize=(12+Math.random()*18)+"px";
+      s.style.transition="transform 1.6s ease, opacity 1.6s ease";
+      s.style.pointerEvents="none";
+      document.body.appendChild(s);
+
+      requestAnimationFrame(()=>{
+        s.style.transform=`translateY(${110+Math.random()*30}vh) rotate(${Math.random()*360}deg)`;
+        s.style.opacity="0";
+      });
+
+      setTimeout(()=>s.remove(),1700);
     }
+  }
+</script>
 
-    function updateScales(){
-      // Each "No" makes Yes bigger and No smaller (mobile-friendly)
-      const yesScale = clamp(1 + noClicks * 0.12, 1, 1.85);
-      const noScale  = clamp(1 - noClicks * 0.08, 0.55, 1);
-
-      setYesScale(yesScale);
-      setNoScale(noScale);
-
-      // Add small playful text progression
-      const lines = [
-        "Hmm 😄",
-        "Are you sure? 🙈",
-        "Ok but… you’re making “Yes” look really good 💗",
-        "I think the universe wants “Yes” 💘",
-        "Last chance 😌",
-        "Just tap “Yes” already 💞"
-      ];
-      result.textContent = lines[clamp(noClicks-1, 0, lines.length-1)];
-    }
-
-    yes.addEventListener('click', () => {
-      if (locked) return;
-      locked = true;
-      result.textContent = "YAY!! 💞 I’m the luckiest. See you soon 😌💗";
-      confettiBurst();
-      // Freeze final state
-      setYesScale(1.6);
-      setNoScale(0.7);
-      no.disabled = true;
-      no.style.cursor = 'not-allowed';
-      no.style.opacity = '0.85';
-    });
-
-    function onNo(){
-      if (locked) return;
-      noClicks++;
-
-      // If she insists too much, auto-nudge
-      if (noClicks >= 7){
-        result.textContent = "Okay okay… I’ll take that as a YES 💖";
-        yes.click();
-        return;
-      }
-
-      updateScales();
-      // subtle vibration on supported mobile browsers
-      if (navigator.vibrate) navigator.vibrate(20);
-    }
-
-    no.addEventListener('click', (e) => { e.preventDefault(); onNo(); });
-    no.addEventListener('touchstart', (e) => { e.preventDefault(); onNo(); }, { passive:false });
-
-    function confettiBurst(){
-      for (let i=0; i<80; i++){
-        const s = document.createElement('span');
-        s.textContent = ['💗','💕','💖','💘','💝','✨'][Math.floor(Math.random()*6)];
-        s.style.position='fixed';
-        s.style.left=(Math.random()*100)+'vw';
-        s.style.top='-10vh';
-        s.style.fontSize=(12+Math.random()*18)+'px';
-        s.style.transition='transform 1.6s ease, opacity 1.6s ease';
-        s.style.opacity='1';
-        s.style.pointerEvents='none';
-        document.body.appendChild(s);
-        requestAnimationFrame(()=>{
-          s.style.transform=`translateY(${110+Math.random()*30}vh) rotate(${Math.random()*360}deg)`;
-          s.style.opacity='0';
-        });
-        setTimeout(()=>s.remove(), 1700);
-      }
-    }
-  </script>
 </body>
 </html>

@@ -27,6 +27,7 @@
       overflow:hidden;
     }
 
+    /* Floating hearts */
     .hearts::before,.hearts::after{
       content:"💗 💕 💖 💘 💝 💞";
       position:fixed;
@@ -95,6 +96,7 @@
       gap:12px;
       justify-content:center;
       flex-wrap:wrap;
+      position:relative;
     }
 
     button{
@@ -121,6 +123,7 @@
       background:#fff;
       color:#7a2b4a;
       border:2px solid #ff9cc6;
+      position:relative;
     }
 
     .footer{
@@ -139,13 +142,13 @@
 
     <h1>Naba, will you be my Valentine?</h1>
 
-    <p>I dare you to press No!</p>
+    <p>I dare you to choose No!</p>
 
     <div class="resultWrap">
       <div id="result"></div>
     </div>
 
-    <div class="btns">
+    <div class="btns" id="btns">
       <button id="yes">Yes 💖</button>
       <button id="no">No 🙈</button>
     </div>
@@ -157,6 +160,7 @@
   const yes = document.getElementById("yes");
   const no = document.getElementById("no");
   const result = document.getElementById("result");
+  const btns = document.getElementById("btns");
 
   let noClicks = 0;
   let locked = false;
@@ -165,6 +169,7 @@
     return Math.max(min,Math.min(max,v));
   }
 
+  /* ===== Size growth logic (Option C) ===== */
   function updateSizes(){
     const yesScale = clamp(1 + noClicks*0.12, 1, 1.8);
     const noScale  = clamp(1 - noClicks*0.08, 0.55, 1);
@@ -187,9 +192,29 @@
     result.textContent = msgs[Math.min(noClicks-1, msgs.length-1)];
   }
 
+  /* ===== Moving No button (desktop hover) ===== */
+  no.addEventListener("mouseenter", ()=>{
+    if(locked) return;
+
+    const area = btns.getBoundingClientRect();
+    const btn  = no.getBoundingClientRect();
+
+    const maxX = area.width - btn.width;
+    const maxY = area.height - btn.height;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    no.style.position="absolute";
+    no.style.left = x+"px";
+    no.style.top  = y+"px";
+  });
+
+  /* ===== Clicking No ===== */
   no.addEventListener("click", e=>{
     e.preventDefault();
     if(locked) return;
+
     noClicks++;
 
     if(noClicks>=7){
@@ -201,9 +226,11 @@
     if(navigator.vibrate) navigator.vibrate(20);
   });
 
+  /* ===== Clicking Yes ===== */
   yes.addEventListener("click", ()=>{
     if(locked) return;
     locked=true;
+
     result.textContent="YAY!! 💞 I’m the luckiest. See you soon 😌💗";
     confetti();
 
@@ -211,6 +238,7 @@
     no.style.opacity=".7";
   });
 
+  /* ===== Confetti ===== */
   function confetti(){
     for(let i=0;i<80;i++){
       const s=document.createElement("span");
